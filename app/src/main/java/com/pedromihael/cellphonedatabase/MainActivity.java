@@ -4,16 +4,10 @@ import android.os.Bundle;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements NewCellphoneDialog.DialogListener {
 
@@ -41,12 +35,7 @@ public class MainActivity extends AppCompatActivity implements NewCellphoneDialo
         FloatingActionButton fab = findViewById(R.id.fab);
 
         /* BOTAO FLUTUANTE */
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNewCellphoneDialog();
-            }
-        });
+        fab.setOnClickListener((v) -> openNewCellphoneDialog());
     }
 
     private void openNewCellphoneDialog() {
@@ -55,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NewCellphoneDialo
     }
 
     @Override
-    public void persistNewCellphoneData(String model, String brand, String modelYear) {
+    public void persistNewCellphoneData(String model, String brand) {
         // TODO
     }
 }
