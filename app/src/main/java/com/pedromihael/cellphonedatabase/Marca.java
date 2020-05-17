@@ -6,7 +6,7 @@ public class Marca {
     public Marca(){}
 
     public String getMarca(){ return this.marca; }
-    public void setMarca(){ this.marca = marca; }
+    public void setMarca(String marca){ this.marca = marca; }
 
     /* O ID vai vir do banco
 
