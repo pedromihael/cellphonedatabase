@@ -29,6 +29,9 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.new_cellphone_dialog, null);
 
+        // Object with database communication
+        CellPhoneOpenHelper helper = new CellPhoneOpenHelper(getContext());
+
         builder.setView(view);
 
         mCancelButton = view.findViewById(R.id.cancel_button);
@@ -40,6 +43,14 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
             String model = mEditTextModel.getText().toString();
             String modelYear = mEditTextModelYear.getText().toString();
             // listener.persistNewCellphoneData(model, brand, modelYear);
+
+            // Creating a object before inserting to database
+            Model modelObj = new Model();
+            modelObj.setMarca(brand);
+            modelObj.setModelo(model);
+
+            // Adding the values from the form to the database
+            helper.addModel(modelObj);
 
             this.dismiss();
 
