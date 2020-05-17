@@ -42,12 +42,16 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
             // listener.persistNewCellphoneData(model, brand);
 
             // Creating a object before inserting to database
-            Model modelObj = new Model();
-            modelObj.setMarca(brand);
-            modelObj.setModelo(model);
+            Cellphone cellphone = new Cellphone();
+            cellphone.setBrand(brand);
+            cellphone.setName(model);
+
+            Marca marca = new Marca();
+            marca.setMarca(brand);
 
             // Adding the values from the form to the database
-            helper.addModel(modelObj);
+            helper.addModel(cellphone);
+//            helper.AddMarca(marca);
 
             this.dismiss();
 

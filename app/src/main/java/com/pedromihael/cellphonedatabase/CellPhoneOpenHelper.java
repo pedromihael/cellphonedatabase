@@ -38,8 +38,8 @@ public class CellPhoneOpenHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_CELULAR +
                 "(" +
                 COLUMN_CELULAR_ID  + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_MARCA_FK + "INTERGER REFERENCES" + TABLE_MARCA + ", " +
-                COLUMN_MODELO + "TEXT" +
+//                COLUMN_MARCA_FK + "INTERGER REFERENCES " + TABLE_MARCA + ", " +
+                COLUMN_MODELO + " TEXT" +
                 ")"
         );
 
@@ -58,18 +58,21 @@ public class CellPhoneOpenHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MARCA);
     }
 
-    public boolean addModel(Model model){
+    public boolean addModel(Cellphone cellphone){
         // This line makes the insertion possible
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-//        values.put(COLUMN_MARCA_FK, model.getMarcaId());
-        values.put(COLUMN_MODELO, model.getModelo());
+        values.put(COLUMN_MODELO, cellphone.getName());
 
         // Add values to database
         db.insert(TABLE_CELULAR, null, values);
-//        Log.i("AddModel", "Added to databaase");
+
+        // Testing
+//        db.execSQL("SELECT * FROM " + TABLE_CELULAR);
+        Log.i("AddModel", "Added to databaase");
+        db.close();
         return true;
     }
 
