@@ -37,12 +37,7 @@ public class MainActivity extends AppCompatActivity implements NewCellphoneDialo
         FloatingActionButton fab = findViewById(R.id.fab);
 
         /* BOTAO FLUTUANTE */
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNewCellphoneDialog();
-            }
-        });
+        fab.setOnClickListener((v) -> openNewCellphoneDialog());
     }
 
     private void openNewCellphoneDialog() {
