@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -16,6 +18,8 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
     private EditText mEditTextModel;
     private EditText mEditTextBrand;
     private EditText mEditTextModelYear;
+    private Button mCancelButton;
+    private Button mConfirmButton;
     private DialogListener listener;
 
     @Override
@@ -25,15 +29,22 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.new_cellphone_dialog, null);
 
-        builder.setView(view)
-                .setTitle(R.string.dialog_title)
-                .setNegativeButton(R.string.dialog_negative_button, (dialogInterface, i) -> { })
-                .setPositiveButton(R.string.dialog_positive_button, (dialogInterface, i) -> {
-                    String brand = mEditTextBrand.getText().toString();
-                    String model = mEditTextModel.getText().toString();
-                    String modelYear = mEditTextModelYear.getText().toString();
-                   // listener.persistNewCellphoneData(model, brand, modelYear);
-                });
+        builder.setView(view);
+
+        mCancelButton = view.findViewById(R.id.cancel_button);
+        mConfirmButton = view.findViewById(R.id.confirm_button);
+
+        mCancelButton.setOnClickListener((v) -> this.dismiss());
+        mConfirmButton.setOnClickListener((v) -> {
+            String brand = mEditTextBrand.getText().toString();
+            String model = mEditTextModel.getText().toString();
+            String modelYear = mEditTextModelYear.getText().toString();
+            // listener.persistNewCellphoneData(model, brand, modelYear);
+
+            this.dismiss();
+
+            Toast.makeText(view.getContext(),"Cadastrado com sucesso!",Toast.LENGTH_SHORT).show();
+        });
 
         mEditTextBrand = view.findViewById(R.id.edit_brand);
         mEditTextModel = view.findViewById(R.id.edit_model);
@@ -48,8 +59,9 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
         try {
             listener = (DialogListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "must implement ExampleDialogListener");
+            throw new ClassCastException(context.toString() + "must implement DialogListener");
         }
+
     }
     public interface DialogListener {
         void persistNewCellphoneData(String model, String brand, String modelYear);

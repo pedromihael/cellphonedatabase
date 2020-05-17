@@ -9,4 +9,5 @@
     <color name="black">#000</color>
     <color name="grey">#1f1f1f</color>
     <color name="dialog_bg">#2e2e2e</color>
+    <color name="negative_option">#9F9F9F</color>
 </resources>
