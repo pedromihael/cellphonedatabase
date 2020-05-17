@@ -37,23 +37,10 @@
         android:textColorHint="@color/textWhite"
         android:theme="@style/editTextStyle" />
 
-    <EditText
-        android:id="@+id/edit_modelyear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_brand"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/dialog_placeholder_year"
-        android:inputType="number"
-        android:textColor="@color/textWhite"
-        android:textColorHint="@color/textWhite"
-        android:theme="@style/editTextStyle" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edit_modelyear"
+        android:layout_below="@id/edit_brand"
         android:gravity="right"
         android:orientation="horizontal">
 

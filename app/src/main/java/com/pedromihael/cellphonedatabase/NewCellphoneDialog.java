@@ -3,7 +3,6 @@ package com.pedromihael.cellphonedatabase;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
 
     private EditText mEditTextModel;
     private EditText mEditTextBrand;
-    private EditText mEditTextModelYear;
     private Button mCancelButton;
     private Button mConfirmButton;
     private DialogListener listener;
@@ -38,8 +36,7 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
         mConfirmButton.setOnClickListener((v) -> {
             String brand = mEditTextBrand.getText().toString();
             String model = mEditTextModel.getText().toString();
-            String modelYear = mEditTextModelYear.getText().toString();
-            // listener.persistNewCellphoneData(model, brand, modelYear);
+            // listener.persistNewCellphoneData(model, brand);
 
             this.dismiss();
 
@@ -48,7 +45,6 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
 
         mEditTextBrand = view.findViewById(R.id.edit_brand);
         mEditTextModel = view.findViewById(R.id.edit_model);
-        mEditTextModelYear = view.findViewById(R.id.edit_modelyear);
 
         return builder.create();
     }
@@ -64,7 +60,7 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
 
     }
     public interface DialogListener {
-        void persistNewCellphoneData(String model, String brand, String modelYear);
+        void persistNewCellphoneData(String model, String brand);
         // implementada na Main - Deve ser substituida pelo ciclo de salvar no banco
     }
 }
