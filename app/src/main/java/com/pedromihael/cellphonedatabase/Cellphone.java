@@ -1,15 +1,20 @@
 package com.pedromihael.cellphonedatabase;
 
-public class Model {
+public class Cellphone {
 
     private String name;
     private String brand;
 
-    public Model() { }
+    public Cellphone() { }
 
-    public Model(String name, String brand) {
+    public Cellphone(String name, String brand) {
         this.name = name;
         this.brand = brand;
+    }
+
+    public Cellphone(String name) {
+        this.name = name;
+        this.brand = name + "- It's a brand!";
     }
 
     public String getName() {

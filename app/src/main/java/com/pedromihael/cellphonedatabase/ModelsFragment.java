@@ -18,42 +18,26 @@ public class ModelsFragment extends Fragment {
 
     View mView;
     private RecyclerView mRecyclerView;
-    private List<Model> mModelsList;
+    private List<Cellphone> mModelsList;
 
-    public ModelsFragment() {
-        // Required empty public constructor
-    }
+    public ModelsFragment() { }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mModelsList = new ArrayList<>();
-        mModelsList.add(new Model("Galaxy S10", "Samsung"));
-        mModelsList.add(new Model("7T", "Oneplus"));
-        mModelsList.add(new Model("Mi 9", "Xiaomi"));
-        mModelsList.add(new Model("Z3", "Motorola"));
-        mModelsList.add(new Model("iPhone Xr", "Apple"));
-        mModelsList.add(new Model("Galaxy S10", "Samsung"));
-        mModelsList.add(new Model("7T", "Oneplus"));
-        mModelsList.add(new Model("Mi 9", "Xiaomi"));
-        mModelsList.add(new Model("Z3", "Motorola"));
-        mModelsList.add(new Model("iPhone Xr", "Apple"));
-        mModelsList.add(new Model("Galaxy S10", "Samsung"));
-        mModelsList.add(new Model("7T", "Oneplus"));
-        mModelsList.add(new Model("Mi 9", "Xiaomi"));
-        mModelsList.add(new Model("Z3", "Motorola"));
-        mModelsList.add(new Model("iPhone Xr", "Apple"));
-        mModelsList.add(new Model("Galaxy S10", "Samsung"));
-        mModelsList.add(new Model("7T", "Oneplus"));
-        mModelsList.add(new Model("Mi 9", "Xiaomi"));
-        mModelsList.add(new Model("Z3", "Motorola"));
-        mModelsList.add(new Model("iPhone Xr", "Apple"));
-        mModelsList.add(new Model("Galaxy S10", "Samsung"));
-        mModelsList.add(new Model("7T", "Oneplus"));
-        mModelsList.add(new Model("Mi 9", "Xiaomi"));
-        mModelsList.add(new Model("Z3", "Motorola"));
-        mModelsList.add(new Model("iPhone Xr", "Apple"));
+        mModelsList.add(new Cellphone("Galaxy S10", "Samsung"));
+        mModelsList.add(new Cellphone("7T", "Oneplus"));
+        mModelsList.add(new Cellphone("Mi 9", "Xiaomi"));
+        mModelsList.add(new Cellphone("Z3", "Motorola"));
+        mModelsList.add(new Cellphone("iPhone Xr", "Apple"));
+        mModelsList.add(new Cellphone("Galaxy S10", "Samsung"));
+        mModelsList.add(new Cellphone("7T", "Oneplus"));
+        mModelsList.add(new Cellphone("Mi 9", "Xiaomi"));
+        mModelsList.add(new Cellphone("Z3", "Motorola"));
+        mModelsList.add(new Cellphone("iPhone Xr", "Apple"));
+        mModelsList.add(new Cellphone("Galaxy S10", "Samsung"));
 
     }
 
@@ -62,7 +46,7 @@ public class ModelsFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_models, container, false);
 
         mRecyclerView = mView.findViewById(R.id.models_recyclerview);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), mModelsList);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), mModelsList, "Modelos");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(adapter);
 
