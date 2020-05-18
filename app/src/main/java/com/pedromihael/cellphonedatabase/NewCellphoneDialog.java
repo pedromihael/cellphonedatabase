@@ -38,6 +38,17 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
             String model = mEditTextModel.getText().toString();
             // listener.persistNewCellphoneData(model, brand);
 
+            // TODO: metodo de teste de cadastro
+            /*
+            * verificar se campo model ta preenchido
+            * * se tiver, verifica se marca ta preenchido
+            * * se ambos estiverem, ao clicar em confirmar, faz busca no que ja existe
+            * * pra ver se ja existe
+            *
+            * * se
+            *
+            * */
+
             this.dismiss();
 
             Toast.makeText(view.getContext(),"Cadastrado com sucesso!",Toast.LENGTH_SHORT).show();
