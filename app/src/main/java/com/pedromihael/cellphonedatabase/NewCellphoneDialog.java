@@ -27,6 +27,9 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.new_cellphone_dialog, null);
 
+        // Object with database communication
+        CellPhoneOpenHelper helper = new CellPhoneOpenHelper(getContext());
+
         builder.setView(view);
 
         mCancelButton = view.findViewById(R.id.cancel_button);
@@ -38,16 +41,18 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
             String model = mEditTextModel.getText().toString();
             // listener.persistNewCellphoneData(model, brand);
 
-            // TODO: metodo de teste de cadastro
-            /*
-            * verificar se campo model ta preenchido
-            * * se tiver, verifica se marca ta preenchido
-            * * se ambos estiverem, ao clicar em confirmar, faz busca no que ja existe
-            * * pra ver se ja existe
-            *
-            * * se
-            *
-            * */
+
+            // Creating a object before inserting to database
+            Cellphone cellphone = new Cellphone();
+            cellphone.setBrand(brand);
+            cellphone.setName(model);
+
+            Marca marca = new Marca();
+            marca.setMarca(brand);
+
+            // Adding the values from the form to the database
+            helper.addModel(cellphone);
+//            helper.AddMarca(marca);
 
             this.dismiss();
 
