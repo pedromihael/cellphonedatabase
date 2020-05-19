@@ -18,6 +18,15 @@ public class ModelsFragment extends Fragment {
 
     View mView;
     private RecyclerView mRecyclerView;
+
+    public List<Cellphone> getmModelsList() {
+        return mModelsList;
+    }
+
+    public void setmModelsList(List<Cellphone> mModelsList) {
+        this.mModelsList = mModelsList;
+    }
+
     private List<Cellphone> mModelsList;
 
     public ModelsFragment() { }
@@ -31,13 +40,6 @@ public class ModelsFragment extends Fragment {
         mModelsList.add(new Cellphone("7T", "Oneplus"));
         mModelsList.add(new Cellphone("Mi 9", "Xiaomi"));
         mModelsList.add(new Cellphone("Z3", "Motorola"));
-        mModelsList.add(new Cellphone("iPhone Xr", "Apple"));
-        mModelsList.add(new Cellphone("Galaxy S10", "Samsung"));
-        mModelsList.add(new Cellphone("7T", "Oneplus"));
-        mModelsList.add(new Cellphone("Mi 9", "Xiaomi"));
-        mModelsList.add(new Cellphone("Z3", "Motorola"));
-        mModelsList.add(new Cellphone("iPhone Xr", "Apple"));
-        mModelsList.add(new Cellphone("Galaxy S10", "Samsung"));
 
     }
 

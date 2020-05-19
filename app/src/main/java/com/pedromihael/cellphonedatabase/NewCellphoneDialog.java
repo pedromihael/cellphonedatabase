@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.util.List;
+
 public class NewCellphoneDialog extends AppCompatDialogFragment {
 
     private EditText mEditTextModel;
@@ -27,9 +29,6 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.new_cellphone_dialog, null);
 
-        // Object with database communication
-        CellPhoneOpenHelper helper = new CellPhoneOpenHelper(getContext());
-
         builder.setView(view);
 
         mCancelButton = view.findViewById(R.id.cancel_button);
@@ -37,26 +36,27 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
 
         mCancelButton.setOnClickListener((v) -> this.dismiss());
         mConfirmButton.setOnClickListener((v) -> {
+            Cellphone cellphone = null;
             String brand = mEditTextBrand.getText().toString();
             String model = mEditTextModel.getText().toString();
-            // listener.persistNewCellphoneData(model, brand);
+            CellPhoneOpenHelper helper = new CellPhoneOpenHelper(getContext());
 
+            if (hasNotNullAssurance(model, brand)) {
+                if (isBrand(model, brand)) {
+                    cellphone = new Cellphone(brand);
+                } else if (isDevice(model)) {
+                    cellphone = new Cellphone(model, brand);
+                }
 
-            // Creating a object before inserting to database
-            Cellphone cellphone = new Cellphone();
-            cellphone.setBrand(brand);
-            cellphone.setName(model);
+                listener.persistNewCellphoneData(cellphone, helper);
+                this.dismiss();
 
-            Marca marca = new Marca();
-            marca.setMarca(brand);
+            } else {
+                Toast.makeText(view.getContext(),
+            "Para cadastrar um dispositivo, insira todos os campos. Para cadastrar uma marca, insira apenas a marca",
+                Toast.LENGTH_SHORT).show();
+            }
 
-            // Adding the values from the form to the database
-            helper.addModel(cellphone);
-//            helper.AddMarca(marca);
-
-            this.dismiss();
-
-            Toast.makeText(view.getContext(),"Cadastrado com sucesso!",Toast.LENGTH_SHORT).show();
         });
 
         mEditTextBrand = view.findViewById(R.id.edit_brand);
@@ -75,9 +75,57 @@ public class NewCellphoneDialog extends AppCompatDialogFragment {
         }
 
     }
+
+    private boolean isModelEmpty(String model) {
+        if (model.isEmpty() || model.equals(null)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isBrandEmpty(String brand) {
+        if (brand.isEmpty() || brand.equals(null)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean hasNotNullAssurance(String model, String brand) {
+        if (isBrandEmpty(brand) && isModelEmpty(model)) {
+            return false;
+        }
+
+        if (isBrandEmpty(brand) && !isModelEmpty(model)) {
+            return false;
+        }
+
+        if (!isBrandEmpty(brand) && isModelEmpty(model)) {
+            return true;
+        }
+
+        return true;
+    }
+
+    private boolean isDevice(String model) {
+        if (!isModelEmpty(model)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isBrand(String model, String brand) {
+        if (!isBrandEmpty(brand) && isModelEmpty(model)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public interface DialogListener {
-        void persistNewCellphoneData(String model, String brand);
-        // implementada na Main - Deve ser substituida pelo ciclo de salvar no banco
+        void persistNewCellphoneData(Cellphone cellphone, CellPhoneOpenHelper helper);
     }
 }
 

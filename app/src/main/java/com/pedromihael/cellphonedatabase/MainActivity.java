@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity implements NewCellphoneDialo
     }
 
     @Override
-    public void persistNewCellphoneData(String model, String brand) {
-        // TODO
+    public void persistNewCellphoneData(Cellphone cellphone, CellPhoneOpenHelper helper) {
+        // Adding the values from the dialog listener to the database
+        helper.addModel(cellphone);
     }
 }
