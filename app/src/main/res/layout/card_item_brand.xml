@@ -25,7 +25,7 @@
             android:textColor="@color/textWhite"
             android:textStyle="bold" />
 
-        <Button
+       <!-- <Button
             android:id="@+id/card_edit_button"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
             android:textColor="@color/textWhite" />
 
         <Button
-            android:id="@+id/card_delete_button"
+            android:id="@+id/card_brand_delete_button"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:background="@null"
             android:gravity="center"
             android:text="Remover"
-            android:textColor="@color/textWhite" />
+            android:textColor="@color/textWhite" /> -->
     </LinearLayout>
 
 </RelativeLayout>

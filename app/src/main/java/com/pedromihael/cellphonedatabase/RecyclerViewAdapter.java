@@ -68,6 +68,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
+    public void updateView() {
+        this.notifyDataSetChanged();
+    }
+
     public class ViewHolder extends  RecyclerView.ViewHolder {
 
         private TextView tv_model;

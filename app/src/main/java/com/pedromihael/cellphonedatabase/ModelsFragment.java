@@ -38,10 +38,6 @@ public class ModelsFragment extends Fragment {
         CellPhoneOpenHelper helper = new CellPhoneOpenHelper(getActivity());
 
         mModelsList = new ArrayList<>();
-       /* mModelsList.add(new Cellphone("Galaxy S10", "Samsung"));
-        mModelsList.add(new Cellphone("7T", "Oneplus"));
-        mModelsList.add(new Cellphone("Mi 9", "Xiaomi"));
-        mModelsList.add(new Cellphone("Z3", "Motorola")); */
 
        for (Cellphone item : helper.retrieveModels()) {
            mModelsList.add(item);
