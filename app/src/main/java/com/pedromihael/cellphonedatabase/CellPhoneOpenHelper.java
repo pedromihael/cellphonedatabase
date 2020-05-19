@@ -181,20 +181,24 @@ public class CellPhoneOpenHelper extends SQLiteOpenHelper {
 
     public List<Cellphone> retrieveModels() {
 
-        String query = "SELECT modelo, marca FROM celular JOIN marca ON celular.marcaId = marca.marcaId;";
+        String query = "SELECT modelo, marca, celular.marcaId, marca.marcaId FROM celular, marca WHERE celular.marcaId = marca.marcaId;";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         List<Cellphone> results = new ArrayList<>();
 
-        if (cursor.moveToFirst()) {
-            String model, brand;
+        if (cursor.getCount() != 0) {
+            while (cursor.moveToNext()) {
+                String model, brand;
 
-            model = cursor.getString(cursor.getColumnIndex("modelo"));
-            brand = cursor.getString(cursor.getColumnIndex("marca"));
+                model = cursor.getString(cursor.getColumnIndex("modelo"));
+                brand = cursor.getString(cursor.getColumnIndex("marca"));
 
-            Cellphone cellphone = new Cellphone(model, brand);
+                Cellphone cellphone = new Cellphone(model, brand);
 
-            results.add(cellphone);
+                if (!brand.equals(model)) {
+                    results.add(cellphone);
+                }
+            }
         }
 
         cursor.close();
