@@ -14,7 +14,7 @@ public class Cellphone {
 
     public Cellphone(String name) {
         this.name = name;
-        this.brand = name + "- It's a brand!";
+        this.brand = name;
     }
 
     public String getName() {

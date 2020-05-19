@@ -9,11 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CellPhoneOpenHelper extends SQLiteOpenHelper {
 
-    SQLiteDatabase db;
     private Context mContext = null;
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "cellphone";
 
     // Table Names
@@ -78,7 +80,6 @@ public class CellPhoneOpenHelper extends SQLiteOpenHelper {
                 } catch (SQLiteException e) {
                     Toast.makeText(mContext, "Falha ao inserir no banco - " + e.toString(), Toast.LENGTH_LONG).show();
                 }
-
             }
 
             if (cellphone.getName().equals(null) || cellphone.getName().length() == 0) {
@@ -148,7 +149,6 @@ public class CellPhoneOpenHelper extends SQLiteOpenHelper {
 
             values.put(COLUMN_MARCA, cellphone.getBrand());
             db.insert(TABLE_MARCA, null, values);
-            db.close();
 
             return true;
         }
@@ -177,5 +177,57 @@ public class CellPhoneOpenHelper extends SQLiteOpenHelper {
         }
 
         return fk;
+    }
+
+    public List<Cellphone> retrieveModels() {
+
+        String query = "SELECT modelo, marca FROM celular JOIN marca ON celular.marcaId = marca.marcaId;";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        List<Cellphone> results = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            String model, brand;
+
+            model = cursor.getString(cursor.getColumnIndex("modelo"));
+            brand = cursor.getString(cursor.getColumnIndex("marca"));
+
+            Cellphone cellphone = new Cellphone(model, brand);
+
+            results.add(cellphone);
+        }
+
+        cursor.close();
+
+        return results;
+
+    }
+
+    public List<Cellphone> retrieveBrands() {
+
+        String query = "SELECT marca FROM marca;";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        List<Cellphone> results = new ArrayList<>();
+
+        if (cursor.getCount() != 0) {
+            while (cursor.moveToNext()) {
+                String model, brand;
+
+                brand = cursor.getString(cursor.getColumnIndex("marca"));
+                model = brand;
+
+                Cellphone cellphone = new Cellphone(model, brand);
+
+                if (!brand.equals("") || brand.length() != 0) {
+                    results.add(cellphone);
+                }
+            }
+        }
+
+        cursor.close();
+
+        return results;
+
     }
 }

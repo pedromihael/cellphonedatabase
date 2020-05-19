@@ -27,12 +27,17 @@ public class BrandsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        CellPhoneOpenHelper helper = new CellPhoneOpenHelper(getActivity());
+
         mBrandsList = new ArrayList<>();
-        mBrandsList.add(new Cellphone("Samsung"));
+        /*mBrandsList.add(new Cellphone("Samsung"));
         mBrandsList.add(new Cellphone("Oneplus"));
         mBrandsList.add(new Cellphone("Xiaomi"));
         mBrandsList.add(new Cellphone("Motorola"));
-        mBrandsList.add(new Cellphone("Apple"));
+        mBrandsList.add(new Cellphone("Apple"));*/
+        for (Cellphone item : helper.retrieveBrands()) {
+            mBrandsList.add(item);
+        }
     }
 
     @Override
